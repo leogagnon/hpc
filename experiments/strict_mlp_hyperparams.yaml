@@ -1,0 +1,29 @@
+name: strict_vs_exact_mnist
+program: main.py
+command:
+  - ./venv/bin/python
+  - ${program}
+  - fit
+  - --config=configs/base.yaml
+  - ${args}
+method: bayes
+metric: val/accuracy
+
+parameters:
+  model.method:
+    value: strict
+  
+  model.gamma:
+    min: 0.001
+    max: 0.1
+  
+  model.inference_iter:
+    min: 10
+    max: 100
+  
+  data.train_batch_size:
+    values: [1, 16, 32]
+  
+  
+  
+  
